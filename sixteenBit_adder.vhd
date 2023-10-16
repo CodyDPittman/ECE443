@@ -26,11 +26,10 @@ component or_gate is
 	Y : out std_logic);
 end component;
 
-signal T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16:std_logic;
+signal T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16:std_logic;	
 
+  -- Implement the 16-bit adder here (requires 16 full adders)
 begin	
-	-- Implement the 16-bit adder here (requires 16 full adders)
-	
 	full_adder_0: full_adder port map(A => A(0), B => B(0), full_adder_carryin => '0' , sum => sum(0), full_adder_carryout => T1);
 	full_adder_1: full_adder port map(A => A(1), B => B(1), full_adder_carryin => T1 , sum => sum(1), full_adder_carryout => T2);
 	full_adder_2: full_adder port map(A => A(2), B => B(2), full_adder_carryin => T2 , sum => sum(2), full_adder_carryout => T3);
