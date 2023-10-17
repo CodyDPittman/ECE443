@@ -48,7 +48,7 @@ begin
 	full_adder_14: full_adder port map(A => A(14), B => B(14), full_adder_carryin => T14 , sum => sum(14), full_adder_carryout => T15);
 	full_adder_15: full_adder port map(A => A(15), B => B(15), full_adder_carryin => T15 , sum => sum(15), full_adder_carryout => T16);	 
 	
-	-- Check the sum for overflow: if xor is '1' then overflow happens, otherwise no
+	-- Check the last two carry outs to test for overflow: if xor is '1' then overflow happens, otherwise no
 	overflow <= T15 xor T16;
 	
 end structural;
