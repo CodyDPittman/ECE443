@@ -6,7 +6,8 @@ use ieee.numeric_std.all;
 	
 entity sixteenBit_adder is
 	port(A, B : in std_logic_vector(15 downto 0);
-			sum : out std_logic_vector(15 downto 0));		
+			sum : out std_logic_vector(15 downto 0);
+				overflow : out std_logic);		
 end sixteenBit_adder;
 
 architecture structural of sixteenBit_adder is
@@ -26,7 +27,7 @@ component or_gate is
 	Y : out std_logic);
 end component;
 
-signal T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16:std_logic;	
+signal T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16: std_logic;	
 
   -- Implement the 16-bit adder here (requires 16 full adders)
 begin	
@@ -45,5 +46,9 @@ begin
 	full_adder_12: full_adder port map(A => A(12), B => B(12), full_adder_carryin => T12 , sum => sum(12), full_adder_carryout => T13);
 	full_adder_13: full_adder port map(A => A(13), B => B(13), full_adder_carryin => T13 , sum => sum(13), full_adder_carryout => T14);
 	full_adder_14: full_adder port map(A => A(14), B => B(14), full_adder_carryin => T14 , sum => sum(14), full_adder_carryout => T15);
-	full_adder_15: full_adder port map(A => A(15), B => B(15), full_adder_carryin => T15 , sum => sum(15), full_adder_carryout => T16);
+	full_adder_15: full_adder port map(A => A(15), B => B(15), full_adder_carryin => T15 , sum => sum(15), full_adder_carryout => T16);	 
+	
+	-- Check the sum for overflow: if xor is '1' then overflow happens, otherwise no
+	overflow <= T15 xor T16;
+	
 end structural;
