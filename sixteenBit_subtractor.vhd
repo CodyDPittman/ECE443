@@ -3,8 +3,8 @@ use IEEE.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity sixteenBit_subtractor is
-    port(A, B : in std_logic_vector(15 downto 0);
-         difference : out std_logic_vector(15 downto 0);
+    port(A, B : in signed(15 downto 0);
+         difference : out signed(15 downto 0);
          overflow : out std_logic);
 end sixteenBit_subtractor;
 
@@ -14,7 +14,17 @@ architecture structural of sixteenBit_subtractor is
         port(A, B, full_adder_carryin : in std_logic;
             sum, full_adder_carryout : out std_logic);
     end component;
-
+	
+		component half_adder is
+		port(A, B : in std_logic;
+				sum, carryout : out std_logic);
+	end component;
+		
+	component or_gate is
+		port(A, B : in std_logic;
+		Y : out std_logic);
+	end component;
+	
     signal T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16: std_logic;
 	signal not_B0, not_B1, not_B2, not_B3, not_B4, not_B5, not_B6, not_B7, not_B8, not_B9, not_B10, not_B11, not_B12, not_B13, not_B14, not_B15: std_logic;
 
