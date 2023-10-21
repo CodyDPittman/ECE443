@@ -5,8 +5,8 @@ use ieee.numeric_std.all;
 -- VHDL design for a 16 bit adder using full adders and gates
 	
 entity sixteenBit_adder is
-	port(A, B : in std_logic_vector(15 downto 0);
-			sum : out std_logic_vector(15 downto 0);
+	port(A, B : in signed(15 downto 0);
+			sum : out signed(15 downto 0);
 				overflow : out std_logic);		
 end sixteenBit_adder;
 
