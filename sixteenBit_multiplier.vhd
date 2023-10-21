@@ -39,9 +39,9 @@ begin
 	
 	-- If LSB is 1, then add mutiplicand to product (probably will use the 16-bit adder here) 
 		
-	-- Shift multiplicand left 1 bit
+	-- Shift multiplicand (A) left 1 bit
 	
-	-- Shift multiplier right 1 bit
+	-- Shift multiplier (B) right 1 bit
 	
 	-- Check if done 32 times ( is repetitions < 32)?
 	
