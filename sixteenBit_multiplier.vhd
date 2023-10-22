@@ -15,7 +15,6 @@ architecture structural of sixteenBit_multiplier is
 signal check1, check2 : signed(31 downto 0);
 
 begin	
-	
 	product <= A * B;
 	
 	check1 <= A * B;
@@ -28,6 +27,8 @@ begin
 		overflow <= '1'; 
 	elsif to_integer(check2) < -32768 then
 		overflow <= '1';
+	else
+		overflow <= '0';
 	end if;	 
 	end process;
 end structural;
