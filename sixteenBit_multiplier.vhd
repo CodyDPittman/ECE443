@@ -12,38 +12,21 @@ end sixteenBit_multiplier;
 
 architecture structural of sixteenBit_multiplier is
 
-component sixteenBit_adder is
-	port(A, B : in signed(15 downto 0);
-			sum : out signed(15 downto 0);
-			overflow : out std_logic);
-end component;
-
-component full_adder is
-	 port(A, B, full_adder_carryin : in std_logic;
-			sum, full_adder_carryout : out std_logic);
-end component;
-
-component half_adder is
-	port(A, B : in std_logic;
-			sum, carryout : out std_logic);
-end component;
-	
-component or_gate is
-	port(A, B : in std_logic;
-	Y : out std_logic);
-end component;
-
+signal check1, check2 : signed(31 downto 0);
 
 begin	
-	-- Look at the least significant bit of the multiplier (B[0])
+	process
+	begin
+	product <= A * B;
+	check1 <= A * B;
+	check2 <= A * B;
 	
-	-- If LSB is 1, then add mutiplicand to product (probably will use the 16-bit adder here) 
-		
-	-- Shift multiplicand (A) left 1 bit
-	
-	-- Shift multiplier (B) right 1 bit
-	
-	-- Check if done 32 times ( is repetitions < 32)?
-	
-	
+	-- Check if product is > 16 bits (32,767) or (-32,768)
+	if check1 > 32767 then
+		overflow <= '1'; 
+	elsif check2 < -32768 then
+		overflow <= '1';
+	end if;	 
+	wait;
+	end process;
 end structural;
