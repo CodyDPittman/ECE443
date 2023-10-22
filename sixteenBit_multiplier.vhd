@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use ieee.numeric_std.all;  
 
-  -- VHDL design for a 16-bit multiplier using full adder and gates
+  -- VHDL design for a 16-bit multiplier
 
 entity sixteenBit_multiplier is
 	port(A, B : in signed (15 downto 0);		  -- A is the multiplicand, B is multiplier
@@ -16,8 +16,9 @@ signal check1, check2 : signed(31 downto 0);
 
 begin	
 	process
-	begin
+	begin  
 	product <= A * B;
+	
 	check1 <= A * B;
 	check2 <= A * B;
 	
