@@ -5,32 +5,23 @@ use ieee.numeric_std.all;
 -- VHDL structural implementation of a 16 bit multiplexer with 8 inputs
 
 entity sixteenBit_multiplexer is
-	port(selectLines : in std_logic_vector (2 downto 0);
-			input0, input1, input2, input3, input4, input5, input6, input7 : signed (15 downto 0);
-				output : out signed(15 downto 0));
+	port(sel : in std_logic_vector(2 downto 0); -- select lines
+			I0, I1, I2, I3, I4, I5, I6, I7 : signed (15 downto 0); -- inputs
+			output : out signed(15 downto 0)); --output
 end entity;
 
 
-
-
 architecture structural of sixteenBit_multiplexer is
-
-component or_gate is
-	port(A, B : in std_logic;
-	Y : out std_logic);
-end component;
-
-
-
-
-
-
-
 begin
 	
-	
-
-
-	
-	
+with sel select
+	output <= I0 when "000",
+			  I1 when "001",
+			  I2 when "010",
+			  I3 when "011",
+			  I4 when "100",
+			  I5 when "101",
+			  I6 when "110",
+			  I7 when "111",
+			  "0000000000000000" when others;
 end structural;
