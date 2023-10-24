@@ -6,7 +6,7 @@ use ieee.numeric_std.all;
 
 entity sixteenBit_multiplexer is
 	port(selectLines : in std_logic_vector (2 downto 0);
-			inputData : in std_logic_vector (7 downto 0);
+			input0, input1, input2, input3, input4, input5, input6, input7 : signed (15 downto 0);
 				output : out signed(15 downto 0));
 end entity;
 
