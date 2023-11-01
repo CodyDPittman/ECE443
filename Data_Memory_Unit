@@ -14,11 +14,11 @@ use ieee.numeric_std.all;
 
 entity RAM_16X16 is
 	port(
-	address: in std_logic_vector(7 downto 0);
-	data_in: std_logic_vector(15 downto 0);
-	write_in: in std_logic;
-	clock: in std_logic;
-	data_out: out std_logic_vector(15 downto 0)
+	address: in std_logic_vector(7 downto 0);	--------------------------------------------- For the 256 address locations
+	data_in: std_logic_vector(15 downto 0);	   	--------------------------------------------- 16 bit input
+	write_in: in std_logic;						--------------------------------------------- Enables data to be written in
+	clock: in std_logic;						--------------------------------------------- Clock used for sequential statements
+	data_out: out std_logic_vector(15 downto 0)	--------------------------------------------- 16 bit output
 	);
 end RAM_16X16;
 
@@ -73,14 +73,14 @@ b"0000111100001100", b"0101101000110011", b"0000000010001001", b"000100100001000
 
 begin
 	process(clock)
-	begin
-		if(rising_edge(clock)) then
-			if(write_in='1') then
-				ram_data(to_integer(unsigned(address))) <= data_in;
-			end if;
-		end if;
-	end process;
+	begin														   		--------------------------------------------- Begin process
+		if(rising_edge(clock)) then										--------------------------------------------- If rising edge of the clock is encountered
+			if(write_in='1') then										--------------------------------------------- If write_in is '1'
+				ram_data(to_integer(unsigned(address))) <= data_in;		--------------------------------------------- Write the input to the indicated address
+			end if;														--------------------------------------------- End if statement
+		end if;															--------------------------------------------- End if statement
+	end process;														--------------------------------------------- End process
 	
-	data_out <= ram_data(to_integer(unsigned(address)));
+	data_out <= ram_data(to_integer(unsigned(address)));				--------------------------------------------- Send data from address to the ouput data line
 	
 end Behavioral;
