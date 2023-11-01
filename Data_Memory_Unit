@@ -12,7 +12,7 @@ use ieee.numeric_std.all;
 
 ---------------------------------------------------------------------------------------------
 
-entity RAM_16X16 is
+entity RAM_256X16 is
 	port(
 	address: in std_logic_vector(7 downto 0);	--------------------------------------------- For the 256 address locations
 	data_in: std_logic_vector(15 downto 0);	   	--------------------------------------------- 16 bit input
@@ -20,11 +20,11 @@ entity RAM_16X16 is
 	clock: in std_logic;						--------------------------------------------- Clock used for sequential statements
 	data_out: out std_logic_vector(15 downto 0)	--------------------------------------------- 16 bit output
 	);
-end RAM_16X16;
+end RAM_256X16;
 
 --------------------------------------------------------------------------------------------
 
-architecture Behavioral of RAM_16X16 is	
+architecture Behavioral of RAM_256X16 is	
 
 type ram_array is array(0 to 255) of std_logic_vector(15 downto 0);
 signal ram_data: ram_array :=(
