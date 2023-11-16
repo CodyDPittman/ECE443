@@ -1,0 +1,51 @@
+-- Mario Williams
+-- Old Dominion University
+-- ECE443 Computer Architecture
+-- Final Project
+-- Instruction Memory Unit
+
+---------------------------------------------------------------------------------------------
+
+Library ieee;
+use ieee.std_logic_1164.all;	
+use ieee.numeric_std.all;
+
+
+
+entity Instruction_Memory_Unit is
+port (
+ PC: in std_logic_vector(15 downto 0);							------------------------ Program Counter signal					
+ Instruction: out  std_logic_vector(15 downto 0)				   	------------------------ Instruction signal
+);
+end Instruction_Memory_Unit; 
+
+---------------------------------------------------------------------------------------------
+
+architecture Behavioral of Instruction_Memory_Unit is
+signal IM_addr: std_logic_vector(3 downto 0);				   		------------------------ Instruction Memory Address
+
+ type ROM_type is array (0 to 15 ) of std_logic_vector(15 downto 0);
+ constant IM_data: ROM_type:=(								   	------------------------ Instruction Memory Data
+ 	  "0000000000000000",
+ 	  "0000000000000001",
+   	"0000000000000010",
+   	"0000000000000011",
+   	"0000000000000100",
+  	"0000000000000101",
+  	"0000000000000110",
+   	"0000000000000111",
+   	"0000000000001000",
+   	"0000000000001001",
+   	"0000000000001010",
+   	"0000000000001011",
+   	"0000000000001100",
+   	"0000000000001101",
+   	"0000000000001110",
+   	"0000000000001111"
+  );
+begin
+
+ IM_addr <= pc(4 downto 1);
+  Instruction <= IM_data(to_integer(unsigned(IM_addr))) when PC < x"0020" else x"0000";
+
+end Behavioral;
